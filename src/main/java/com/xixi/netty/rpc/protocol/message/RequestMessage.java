@@ -26,9 +26,9 @@ public class RequestMessage extends BaseMessage {
     private String[] methodArgs;
 
     /**
-     * 方法参数类型类型数组
+     * 方法参数签名
      */
-    private String[] methodArgsType;
+    private String[] methodArgsSignatures;
 
 
 }

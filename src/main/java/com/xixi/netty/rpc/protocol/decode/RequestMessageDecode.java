@@ -42,7 +42,7 @@ public class RequestMessageDecode extends ByteToMessageDecoder {
                 int argsLength = byteBuf.readInt();
                 methodArgsTypeArray[i] = byteBuf.readCharSequence(argsLength, ProtocolConstant.UTF_8).toString();
             }
-            requestMessage.setMethodArgsType(methodArgsTypeArray);
+            requestMessage.setMethodArgsSignatures(methodArgsTypeArray);
         }
     }
 }

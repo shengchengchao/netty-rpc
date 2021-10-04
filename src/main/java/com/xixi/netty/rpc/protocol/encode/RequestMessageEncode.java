@@ -36,10 +36,10 @@ public class RequestMessageEncode extends MessageToByteEncoder<RequestMessage> {
             }
         }
         //方法参数类型
-        if (null != requestMessage.getMethodArgsType() && requestMessage.getMethodArgsType().length > 0) {
-            int length = requestMessage.getMethodArgsType().length;
+        if (null != requestMessage.getMethodArgsSignatures() && requestMessage.getMethodArgsSignatures().length > 0) {
+            int length = requestMessage.getMethodArgsSignatures().length;
             byteBuf.writeInt(length);
-            for (String methodArgClass : requestMessage.getMethodArgsType()) {
+            for (String methodArgClass : requestMessage.getMethodArgsSignatures()) {
                 byteBuf.writeInt(Optional.ofNullable(methodArgClass).orElse("").length());
                 byteBuf.writeCharSequence(Optional.ofNullable(methodArgClass).orElse(""), ProtocolConstant.UTF_8);
             }
