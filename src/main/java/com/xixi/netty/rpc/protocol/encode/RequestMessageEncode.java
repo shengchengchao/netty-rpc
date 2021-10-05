@@ -1,5 +1,6 @@
 package com.xixi.netty.rpc.protocol.encode;
 
+import com.xixi.netty.rpc.common.JsonSerializer;
 import com.xixi.netty.rpc.protocol.message.ProtocolConstant;
 import com.xixi.netty.rpc.protocol.message.RequestMessage;
 import io.netty.buffer.ByteBuf;
@@ -30,9 +31,10 @@ public class RequestMessageEncode extends MessageToByteEncoder<RequestMessage> {
         if (null != requestMessage.getMethodArgs() && requestMessage.getMethodArgs().length > 0) {
             int length = requestMessage.getMethodArgs().length;
             byteBuf.writeInt(length);
-            for (String methodArg : requestMessage.getMethodArgs()) {
-                byteBuf.writeInt(Optional.ofNullable(methodArg).orElse("").length());
-                byteBuf.writeCharSequence(Optional.ofNullable(methodArg).orElse(""), ProtocolConstant.UTF_8);
+            for (Object methodArg : requestMessage.getMethodArgs()) {
+                byte[] encode = JsonSerializer.getInstance().encode(methodArg);
+                byteBuf.writeInt(encode.length);
+                byteBuf.writeBytes(encode);
             }
         }
         //方法参数类型

@@ -23,7 +23,7 @@ public class RequestMessage extends BaseMessage {
     /**
      * 方法参数
      */
-    private String[] methodArgs;
+    private Object[] methodArgs;
 
     /**
      * 方法参数签名
