@@ -16,6 +16,12 @@ import java.util.Optional;
  */
 public class RequestMessageEncode extends MessageToByteEncoder<RequestMessage> {
 
+    private JsonSerializer jsonSerializer;
+
+
+    public RequestMessageEncode(JsonSerializer jsonSerializer) {
+        this.jsonSerializer = jsonSerializer;
+    }
 
     @Override
     protected void encode(ChannelHandlerContext channelHandlerContext, RequestMessage requestMessage, ByteBuf byteBuf) throws Exception {
